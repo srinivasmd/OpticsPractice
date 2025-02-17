@@ -192,6 +192,28 @@ var myGameArea = {
         this.canvas.width = window.innerWidth * 0.7;
         this.canvas.height = window.innerHeight * 0.7;
         this.context = this.canvas.getContext("2d");
+	 // Determine division sizes
+        this.const verticalDivisionSize = width / 3;
+        this.const horizontalDivisionSize = height / 3;
+	this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = 1;
+	// Draw vertical grid lines
+            for (let i = 1; i < 3; i++) {
+                let x = i * verticalDivisionSize;
+                this.ctx.beginPath();
+                this.ctx.moveTo(x, 0);
+                this.ctx.lineTo(x, height);
+                this.ctx.stroke();
+            }
+
+            // Draw horizontal grid lines
+            for (let i = 1; i < 3; i++) {
+                let y = i * horizontalDivisionSize;
+                this.ctx.beginPath();
+                this.ctx.moveTo(0, y);
+                this.ctx.lineTo(width, y);
+                this.ctx.stroke();
+            }
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function (e) {
